@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Piernas Ligeras | Guía Gratuita sobre Várices</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --deep:    #160826;
+  --plum:    #3b1f5e;
+  --violet:  #7340b8;
+  --lav:     #c8b0e8;
+  --blush:   #f5cedd;
+  --rose:    #e8709a;
+  --gold:    #f0d060;
+  --gold-dk: #c9a020;
+  --cream:   #fdf8f2;
+  --soft:    #f3ecfb;
+  --white:   #ffffff;
+  --tmid:    #5a4a72;
+  --tlt:     #9080a8;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Nunito',sans-serif;background:var(--deep);color:#2a1640;overflow-x:hidden;}
+
+/* ── POST ZONE ── */
+.post-zone{background:var(--deep);padding:32px 24px 0;display:flex;flex-direction:column;align-items:center;}
+.post-frame{
+  width:100%;max-width:500px;aspect-ratio:1/1;
+  border-radius:18px;border:2px dashed #ffffff28;
+  background:linear-gradient(145deg,#2a1048,#1a0830);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;
+  cursor:pointer;position:relative;overflow:hidden;transition:border-color .3s;
+  box-shadow:0 20px 60px #00000055;
+}
+.post-frame:hover{border-color:var(--gold);}
+.post-frame input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+#post-preview{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:16px;display:none;}
+.post-ph{text-align:center;pointer-events:none;z-index:1;}
+.post-ph .ph-icon{font-size:3rem;margin-bottom:10px;}
+.post-ph p{color:var(--lav);font-size:.95rem;font-weight:600;line-height:1.5;}
+.post-ph small{color:#7a6a9a;font-size:.75rem;}
+
+.aud-strip{
+  width:100%;max-width:500px;
+  background:linear-gradient(135deg,#2d1250,#1f0a40);
+  border:1px solid #ffffff15;border-top:none;
+  border-radius:0 0 18px 18px;padding:20px 24px 26px;text-align:center;
+}
+.aud-label{font-size:.68rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.aud-strip p{color:#ddd0f0;font-size:.95rem;line-height:1.65;}
+.aud-tags{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:14px;}
+.aud-tag{background:#ffffff12;border:1px solid #ffffff20;color:var(--lav);font-size:.78rem;font-weight:700;padding:5px 14px;border-radius:50px;}
+
+/* ── HERO ── */
+.hero{
+  position:relative;padding:70px 24px 80px;text-align:center;overflow:hidden;
+  background:linear-gradient(180deg,#1a0830 0%,var(--deep) 100%);
+}
+.hero::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 0%,#7340b855 0%,transparent 60%),
+             radial-gradient(ellipse at 80% 100%,#e8709a22 0%,transparent 50%);
+}
+.vein-deco{position:absolute;opacity:.1;pointer-events:none;}
+.vein-deco.l{left:-20px;top:40px;width:200px;}
+.vein-deco.r{right:-20px;bottom:40px;width:200px;transform:scaleX(-1);}
+
+.badge{
+  position:relative;display:inline-block;
+  background:linear-gradient(135deg,var(--gold),var(--gold-dk));
+  color:#160826;font-size:.72rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;
+  padding:7px 22px;border-radius:50px;margin-bottom:28px;
+  animation:fdwn .7s ease both;
+}
+.hero h1{
+  position:relative;font-family:'Playfair Display',serif;
+  font-size:clamp(2.2rem,6vw,3.8rem);color:#fff;line-height:1.15;
+  max-width:780px;margin:0 auto;
+  text-shadow:0 2px 20px #00000055;animation:fdwn .8s .1s ease both;
+}
+.hero h1 em{font-style:italic;color:var(--blush);}
+.hero-sub{
+  position:relative;font-size:clamp(.95rem,2.5vw,1.18rem);
+  color:#d8c8f0;max-width:580px;margin:22px auto 44px;
+  line-height:1.78;font-weight:400;animation:fdwn .9s .2s ease both;
+}
+.hero-sub strong{color:var(--gold);font-weight:800;}
+.hero-ctas{position:relative;display:flex;flex-wrap:wrap;gap:16px;justify-content:center;animation:fdwn 1s .35s ease both;}
+
+/* ── BUTTONS ── */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:16px 32px;border-radius:50px;
+  font-family:'Nunito',sans-serif;font-size:1rem;font-weight:800;
+  text-decoration:none;cursor:pointer;border:none;
+  transition:transform .2s,box-shadow .2s;letter-spacing:.02em;line-height:1;
+}
+.btn:hover{transform:translateY(-3px);}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-dk));color:#160826;box-shadow:0 8px 30px #f0d06044;}
+.btn-gold:hover{box-shadow:0 14px 44px #f0d06077;}
+.btn-rose{background:linear-gradient(135deg,#f080b0,#c95080);color:#fff;box-shadow:0 8px 30px #e8709a44;}
+.btn-rose:hover{box-shadow:0 14px 44px #e8709a77;}
+.btn-violet{background:linear-gradient(135deg,var(--violet),var(--plum));color:#fff;box-shadow:0 8px 30px #7340b844;}
+.btn-violet:hover{box-shadow:0 14px 44px #7340b877;}
+@keyframes pulseB{0%,100%{box-shadow:0 8px 30px #f0d06050;}50%{box-shadow:0 14px 50px #f0d060a0;}}
+.pulse{animation:pulseB 2.5s ease-in-out infinite;}
+
+/* ── SECTION LAYOUT ── */
+.sl{background:var(--cream);}
+.ss{background:var(--soft);}
+.sd{background:var(--deep);}
+.section{max-width:920px;margin:0 auto;padding:80px 24px;position:relative;z-index:1;}
+.slbl{font-size:.70rem;font-weight:800;letter-spacing:.28em;text-transform:uppercase;margin-bottom:12px;}
+.ol .slbl{color:var(--violet);}
+.od .slbl{color:var(--gold);}
+.stitle{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.7rem);line-height:1.2;margin-bottom:18px;}
+.ol .stitle{color:var(--plum);}
+.od .stitle{color:#fff;}
+.sbody{line-height:1.75;font-size:1rem;}
+.ol .sbody{color:var(--tmid);}
+.od .sbody{color:#ccc0e0;}
+.divln{width:56px;height:3px;border-radius:2px;background:linear-gradient(90deg,var(--gold),var(--rose));margin:0 0 38px;}
+
+/* ── SYMPTOMS ── */
+.sym-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;margin-top:8px;}
+.sym-card{
+  background:#fff;border:1.5px solid #e0ccf4;border-radius:16px;padding:26px 20px;
+  text-align:center;transition:transform .25s,box-shadow .25s,border-color .25s;
+}
+.sym-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px #7340b818;border-color:var(--violet);}
+.si{font-size:2.2rem;margin-bottom:12px;}
+.sym-card h3{font-size:1rem;font-weight:800;color:var(--plum);margin-bottom:8px;}
+.sym-card p{font-size:.84rem;color:var(--tmid);line-height:1.6;}
+
+/* ── EBOOK ── */
+.ebook-wrap{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start;}
+@media(max-width:680px){.ebook-wrap{grid-template-columns:1fr;}}
+.ebook-outer{position:relative;}
+.free-rib{
+  position:absolute;top:-10px;right:10px;z-index:2;
+  background:var(--gold);color:#160826;font-size:.72rem;font-weight:900;
+  letter-spacing:.12em;text-transform:uppercase;padding:6px 18px;border-radius:4px;
+  transform:rotate(3deg);box-shadow:0 4px 14px #f0d06055;
+}
+.ebook-mock{
+  background:linear-gradient(145deg,#3b1f5e,#1a0830);
+  border-radius:14px;padding:38px 28px 44px;color:#fff;text-align:center;
+  box-shadow:8px 10px 0 #f0d06033,0 24px 60px #00000055;
+  border:1px solid #ffffff15;transform:rotate(-2deg);transition:transform .3s;
+}
+.ebook-mock:hover{transform:rotate(0) scale(1.02);}
+.em-pre{font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;font-weight:800;}
+.ebook-mock h2{font-family:'Playfair Display',serif;font-size:1.45rem;line-height:1.3;color:#fff;margin-bottom:10px;}
+.em-sub{font-size:.82rem;color:var(--lav);margin-bottom:22px;line-height:1.5;}
+.em-auth{font-size:.75rem;color:#c8b0e8;border-top:1px solid #ffffff18;padding-top:14px;}
+
+/* lead form */
+.lbox{background:#fff;border-radius:20px;padding:36px 32px;box-shadow:0 20px 60px #7340b815;border:1.5px solid #e0ccf4;}
+.lbox h3{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--plum);margin-bottom:6px;}
+.lbox-sub{font-size:.88rem;color:var(--tlt);margin-bottom:24px;line-height:1.6;}
+.ff{margin-bottom:16px;}
+.ff label{display:block;font-size:.78rem;font-weight:800;color:var(--plum);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px;}
+.ff input{
+  width:100%;padding:14px 18px;border:1.5px solid #ddd0f0;border-radius:10px;
+  font-family:'Nunito',sans-serif;font-size:.95rem;color:#2a1640;
+  background:#fdfaff;outline:none;transition:border-color .2s,box-shadow .2s;
+}
+.ff input:focus{border-color:var(--violet);box-shadow:0 0 0 3px #7340b818;}
+.ff input::placeholder{color:#b0a0c0;}
+.pnote{font-size:.74rem;color:#b0a0c0;text-align:center;margin-top:12px;line-height:1.5;}
+
+.ebul{list-style:none;margin:22px 0 32px;}
+.ebul li{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px;font-size:.95rem;color:var(--tmid);line-height:1.55;}
+.ebul li::before{content:'✦';color:var(--violet);font-size:.78rem;flex-shrink:0;margin-top:4px;}
+
+/* ── TALLER ── */
+.tcard{
+  background:linear-gradient(145deg,#2e1255,#1a0830);
+  border-radius:24px;padding:54px 40px;color:#fff;text-align:center;
+  position:relative;overflow:hidden;
+  border:1px solid #ffffff12;box-shadow:0 30px 80px #00000055;
+}
+.tcard::before{
+  content:'';position:absolute;width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,#7340b828,transparent 70%);
+  top:-150px;right:-150px;pointer-events:none;
+}
+.tbadge{
+  display:inline-block;background:var(--gold);color:#160826;
+  font-size:.72rem;font-weight:900;letter-spacing:.2em;text-transform:uppercase;
+  padding:7px 22px;border-radius:50px;margin-bottom:22px;
+}
+.tcard h2{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,4vw,2.6rem);color:#fff;line-height:1.2;margin-bottom:14px;}
+.tsub{color:#d0c0e8;font-size:1rem;line-height:1.7;max-width:580px;margin:0 auto 38px;}
+.tdetails{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-bottom:38px;}
+.dpill{
+  background:#ffffff15;border:1px solid #ffffff22;border-radius:50px;
+  padding:11px 22px;font-size:.9rem;font-weight:700;color:#f0e8ff;
+  display:flex;align-items:center;gap:8px;
+}
+.ttopics{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px;margin-bottom:44px;text-align:left;}
+.titem{background:#ffffff0d;border:1px solid #ffffff18;border-radius:14px;padding:18px;}
+.titem strong{display:block;color:#fff;font-size:.92rem;margin-bottom:6px;}
+.titem span{font-size:.82rem;color:#c0aad8;line-height:1.55;}
+
+/* ── ABOUT ── */
+.about-wrap{display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center;}
+@media(max-width:600px){.about-wrap{grid-template-columns:1fr;text-align:center;}.aring{margin:0 auto;}}
+.aring{width:130px;height:130px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--rose));padding:4px;flex-shrink:0;}
+.ainner{width:100%;height:100%;border-radius:50%;background:linear-gradient(145deg,#3b1f5e,#160826);display:flex;align-items:center;justify-content:center;font-size:3.2rem;}
+.aname{font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--plum);margin-bottom:4px;}
+.arole{font-size:.82rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--violet);margin-bottom:14px;}
+.atext{font-size:.95rem;color:var(--tmid);line-height:1.75;}
+
+/* ── FINAL CTA ── */
+.fcta{background:linear-gradient(145deg,#1f0940,var(--deep));padding:90px 24px;text-align:center;position:relative;overflow:hidden;}
+.fcta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 60%,#e8709a15,transparent 65%);pointer-events:none;}
+.fcta h2{position:relative;font-family:'Playfair Display',serif;font-size:clamp(1.9rem,4vw,2.8rem);color:#fff;margin-bottom:16px;text-shadow:0 2px 20px #00000044;}
+.fcta p{position:relative;color:#ccc0e0;font-size:1.05rem;max-width:460px;margin:0 auto 44px;line-height:1.75;}
+
+/* ── FLOATING WA ── */
+.wa-float{position:fixed;bottom:26px;right:26px;z-index:9999;display:flex;align-items:center;text-decoration:none;cursor:pointer;}
+.wa-bub{
+  background:#25D366;width:62px;height:62px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 28px #25D36688,0 0 0 0 #25D36666;
+  animation:waP 2.2s ease-in-out infinite;transition:transform .2s;flex-shrink:0;
+}
+.wa-float:hover .wa-bub{transform:scale(1.1);}
+.wa-lbl{
+  background:#160826;color:#fff;font-size:.82rem;font-weight:700;
+  padding:10px 16px 10px 18px;border-radius:50px 0 0 50px;
+  margin-right:-8px;white-space:nowrap;
+  box-shadow:-4px 4px 20px #00000040;
+  border:1px solid #ffffff14;
+  opacity:0;transform:translateX(10px);
+  transition:opacity .3s,transform .3s;pointer-events:none;
+}
+.wa-float:hover .wa-lbl{opacity:1;transform:translateX(0);}
+@keyframes waP{
+  0%{box-shadow:0 6px 28px #25D36688,0 0 0 0 #25D36655;}
+  60%{box-shadow:0 6px 28px #25D36688,0 0 0 18px #25D36600;}
+  100%{box-shadow:0 6px 28px #25D36688,0 0 0 0 #25D36600;}
+}
+
+/* ── MODAL ── */
+.mov{
+  position:fixed;inset:0;background:#160826cc;backdrop-filter:blur(8px);
+  z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;
+  opacity:0;pointer-events:none;transition:opacity .3s;
+}
+.mov.active{opacity:1;pointer-events:all;}
+.modal{
+  background:#fff;border-radius:22px;padding:44px 38px;
+  max-width:460px;width:100%;position:relative;
+  transform:translateY(30px) scale(.97);transition:transform .3s;
+  box-shadow:0 40px 100px #00000066;
+}
+.mov.active .modal{transform:translateY(0) scale(1);}
+.mcl{position:absolute;top:16px;right:18px;background:none;border:none;font-size:1.4rem;cursor:pointer;color:#bbb;line-height:1;}
+.mcl:hover{color:var(--plum);}
+.modal h3{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--plum);margin-bottom:6px;}
+.msub{font-size:.88rem;color:var(--tlt);margin-bottom:26px;line-height:1.6;}
+.sbox{display:none;text-align:center;padding:20px 0;}
+.sbox .sicon{font-size:3.2rem;margin-bottom:14px;}
+.sbox h4{font-family:'Playfair Display',serif;font-size:1.45rem;color:var(--plum);margin-bottom:10px;}
+.sbox p{color:var(--tmid);font-size:.9rem;line-height:1.65;}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+@keyframes fdwn{from{opacity:0;transform:translateY(-18px);}to{opacity:1;transform:translateY(0);}}
+
+@media(max-width:560px){
+  .tcard{padding:36px 20px;}
+  .lbox{padding:28px 20px;}
+  .modal{padding:36px 22px;}
+  .section{padding:60px 18px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ ZONA POST FACEBOOK ══ -->
+<div class="post-zone">
+  <div class="post-frame" onclick="document.getElementById('img-up').click()">
+    <input type="file" id="img-up" accept="image/*" onchange="previewPost(event)" onclick="event.stopPropagation()">
+    <img id="post-preview" alt="Post semanal">
+    <div class="post-ph" id="post-ph">
+      <div class="ph-icon">🖼️</div>
+      <p>Imagen del post de esta semana<br><strong style="color:var(--gold);">Formato cuadrado · Post de Facebook</strong></p>
+      <small>Toca para cargar · JPG / PNG · 1:1</small>
+    </div>
+  </div>
+
+  <div class="aud-strip">
+    <div class="aud-label">✦ ¿Esto es para ti? ✦</div>
+    <p>Si trabajas muchas horas de pie, tu circulación está en riesgo.<br>Las várices afectan principalmente a quienes no descansan para servir a los demás.</p>
+    <div class="aud-tags">
+      <span class="aud-tag">🍽️ Restauranteros</span>
+      <span class="aud-tag">💉 Enfermeras</span>
+      <span class="aud-tag">✂️ Estilistas</span>
+      <span class="aud-tag">🏪 Vendedores</span>
+      <span class="aud-tag">🏥 Personal médico</span>
+      <span class="aud-tag">🧹 Intendencia</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <svg class="vein-deco l" viewBox="0 0 200 600" fill="none">
+    <path d="M100 10 Q60 100 120 200 Q180 300 80 400 Q40 480 100 590" stroke="#e8709a" stroke-width="3" fill="none"/>
+    <path d="M120 50 Q90 140 140 250 Q170 330 100 430" stroke="#c8b0e8" stroke-width="2" fill="none"/>
+    <path d="M80 80 Q110 180 70 300 Q50 380 90 480" stroke="#7340b8" stroke-width="1.5" fill="none"/>
+  </svg>
+  <svg class="vein-deco r" viewBox="0 0 200 600" fill="none">
+    <path d="M100 10 Q60 100 120 200 Q180 300 80 400 Q40 480 100 590" stroke="#e8709a" stroke-width="3" fill="none"/>
+    <path d="M120 50 Q90 140 140 250 Q170 330 100 430" stroke="#c8b0e8" stroke-width="2" fill="none"/>
+  </svg>
+
+  <span class="badge">✦ Bienestar Circulatorio ✦</span>
+  <h1>¿Piernas <em>pesadas, cansadas</em><br>y sin alivio al final del día?</h1>
+  <p class="hero-sub">
+    Descarga nuestra <strong>Guía Gratuita sobre Várices</strong>, únete al taller semanal por Zoom y recupera la ligereza en tus piernas — hoy mismo.
+  </p>
+  <div class="hero-ctas">
+    <a class="btn btn-gold pulse" href="#ebook">📖 Descargar Guía Gratis</a>
+    <a class="btn btn-rose" href="#taller">🎥 Taller Gratuito por Zoom</a>
+  </div>
+</section>
+
+
+<!-- ══ SÍNTOMAS ══ -->
+<div class="sl">
+<div class="section ol reveal">
+  <div class="slbl">¿Te identificas?</div>
+  <h2 class="stitle">Señales que no debes ignorar</h2>
+  <p class="sbody" style="max-width:560px;margin-bottom:18px;">Las várices no son solo estéticas. Sin atención, pueden derivar en trombosis venosa u otras complicaciones graves que afectan tu calidad de vida.</p>
+  <div class="divln"></div>
+  <div class="sym-grid">
+    <div class="sym-card"><div class="si">🦵</div><h3>Pesadez y fatiga</h3><p>Piernas como plomo al final del turno, especialmente tras muchas horas de pie.</p></div>
+    <div class="sym-card"><div class="si">💧</div><h3>Tobillos inflamados</h3><p>Retención de líquidos que aumenta con el calor o largas jornadas laborales.</p></div>
+    <div class="sym-card"><div class="si">🔵</div><h3>Venitas visibles</h3><p>Venas azuladas, tortuosas o arañas vasculares en pantorrillas y muslos.</p></div>
+    <div class="sym-card"><div class="si">🌙</div><h3>Calambres nocturnos</h3><p>Contracturas dolorosas que interrumpen el sueño, señal de circulación deficiente.</p></div>
+    <div class="sym-card"><div class="si">🔥</div><h3>Picazón y ardor</h3><p>Sensación de hormigueo o quemazón alrededor de las venas afectadas.</p></div>
+    <div class="sym-card"><div class="si">⚠️</div><h3>Riesgo de trombos</h3><p>Sin atención a tiempo, la sangre puede coagularse peligrosamente en las venas.</p></div>
+  </div>
+</div>
+</div>
+
+
+<!-- ══ EBOOK ══ -->
+<div class="ss" id="ebook">
+<div class="section ol reveal">
+  <div class="ebook-wrap">
+
+    <div class="ebook-outer">
+      <div class="free-rib">¡GRATIS!</div>
+      <div class="ebook-mock">
+        <div class="em-pre">E-Book Gratuito</div>
+        <h2>Piernas Ligeras:<br>Tu Guía Completa<br>sobre Várices</h2>
+        <p class="em-sub">Origen · Cuidados · Prevención<br>y cuándo acudir al especialista</p>
+        <svg width="80" height="50" viewBox="0 0 80 50" fill="none" style="margin:0 auto 18px;display:block;opacity:.5;">
+          <path d="M5 45 Q20 5 40 25 Q55 42 75 10" stroke="#e8709a" stroke-width="2.5" fill="none"/>
+          <path d="M10 45 Q28 12 45 30 Q60 44 76 18" stroke="#c8b0e8" stroke-width="1.5" fill="none"/>
+        </svg>
+        <div class="em-auth">Especialista en Salud Circulatoria</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="slbl" style="color:var(--violet);">Descarga Gratuita</div>
+      <h2 class="stitle" style="color:var(--plum);">Tu guía para entender y prevenir las várices</h2>
+      <p class="sbody ol" style="margin-bottom:6px;">Un recurso práctico que explica qué son las várices, por qué aparecen y qué puedes hacer hoy mismo para mejorar tu circulación.</p>
+
+      <ul class="ebul">
+        <li>Por qué se forman las várices y los factores de riesgo</li>
+        <li>Diferencia entre várices estéticas y várices peligrosas</li>
+        <li>Rutina diaria para mejorar la circulación</li>
+        <li>Qué alimentos favorecen la salud de tus venas</li>
+        <li>Señales de alerta: cuándo ir al médico urgente</li>
+        <li>Ejercicios suaves para hacer en casa o en el trabajo</li>
+      </ul>
+
+      <div class="lbox">
+        <h3>Recibe tu guía ahora</h3>
+        <p class="lbox-sub">Déjanos tus datos y te la enviamos de inmediato. Sin costo, sin spam.</p>
+        <div class="ff">
+          <label>Tu nombre</label>
+          <input type="text" id="ln" placeholder="Ej. María García">
+        </div>
+        <div class="ff">
+          <label>Correo electrónico</label>
+          <input type="email" id="le" placeholder="maria@ejemplo.com">
+        </div>
+        <div class="ff">
+          <label>WhatsApp <span style="font-weight:400;text-transform:none;letter-spacing:0;color:#b0a0c0;">(opcional)</span></label>
+          <input type="tel" id="lp" placeholder="+52 222 000 0000">
+        </div>
+        <button class="btn btn-gold pulse" style="width:100%;justify-content:center;margin-top:6px;" onclick="handleEbook()">
+          📖 Quiero mi guía gratuita
+        </button>
+        <p class="pnote">🔒 Tus datos están seguros. No los compartimos con nadie.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+
+<!-- ══ TALLER ══ -->
+<div class="sd" id="taller">
+<div class="section od reveal">
+  <div class="tcard">
+    <span class="tbadge">🎥 Taller Gratuito por Zoom</span>
+    <h2>Cada lunes: aprende a<br>cuidar tus venas en vivo</h2>
+    <p class="tsub">Sesión semanal gratuita donde resolvemos dudas, compartimos casos reales y te damos herramientas prácticas para mejorar tu circulación desde hoy.</p>
+    <div class="tdetails">
+      <div class="dpill">📅 Todos los lunes</div>
+      <div class="dpill">🕗 8:00 PM hora CDMX</div>
+      <div class="dpill">💻 Vía Zoom</div>
+      <div class="dpill">✅ Completamente gratis</div>
+    </div>
+    <div class="ttopics">
+      <div class="titem"><strong>🔬 Origen</strong><span>Por qué aparecen las várices y quiénes son más vulnerables</span></div>
+      <div class="titem"><strong>💊 Cuidados</strong><span>Hábitos, tratamientos y remedios que realmente funcionan</span></div>
+      <div class="titem"><strong>🛡️ Prevención</strong><span>Cómo evitar que empeoren o que aparezcan trombos peligrosos</span></div>
+      <div class="titem"><strong>🙋 Q&amp;A en vivo</strong><span>Resuelve tus dudas directamente en la sesión semanal</span></div>
+    </div>
+    <button class="btn btn-gold pulse" style="font-size:1.05rem;padding:18px 46px;" onclick="openMod()">
+      🙋 Reservar mi lugar — es gratis
+    </button>
+  </div>
+</div>
+</div>
+
+
+<!-- ══ ABOUT ══ -->
+<div class="sl">
+<div class="section ol reveal">
+  <div class="about-wrap">
+    <div>
+      <div class="aring">
+        <div class="ainner">👨‍⚕️</div>
+      </div>
+    </div>
+    <div>
+      <div class="slbl" style="color:var(--violet);">Tu guía en este camino</div>
+      <h2 class="aname">Especialista en Circulación</h2>
+      <p class="arole">Evaluación cuántica · Bienestar Vascular · Salud Natural</p>
+      <p class="atext">Con años de experiencia acompañando a personas que sufren pesadez, dolor y problemas circulatorios, combinamos evaluación cuántica, revisión de circulación y orientación natural para ofrecer soluciones reales y accesibles. Nuestra misión: que nadie tenga que vivir con piernas cansadas cuando hay opciones de mejora.</p>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- ══ FINAL CTA ══ -->
+<div class="fcta">
+  <h2>¿Tienes dudas o síntomas urgentes?</h2>
+  <p>Escríbenos por WhatsApp, cuéntanos lo que sientes y recibe orientación inicial sin compromiso ni costo.</p>
+  <a class="btn btn-gold pulse" style="font-size:1.1rem;padding:20px 46px;"
+     href="https://wa.me/522214282564?text=Hola%2C%20vi%20la%20p%C3%A1gina%20sobre%20v%C3%A1rices%20y%20me%20gustar%C3%ADa%20orientaci%C3%B3n" target="_blank">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Consulta por WhatsApp
+  </a>
+</div>
+
+
+<!-- ══ FOOTER ══ -->
+<footer style="background:#0d0518;text-align:center;padding:28px 24px;color:#7a6a8a;font-size:.78rem;line-height:1.8;">
+  <p>© 2025 · Salud Circulatoria · Puebla, México</p>
+  <p>Este sitio es informativo y no reemplaza la consulta médica profesional.</p>
+</footer>
+
+
+<!-- ══ BOTÓN FLOTANTE WA ══ -->
+<a class="wa-float"
+   href="https://wa.me/522214282564?text=Hola%2C%20vi%20la%20p%C3%A1gina%20sobre%20v%C3%A1rices%20y%20quisiera%20orientaci%C3%B3n"
+   target="_blank" title="Consulta por WhatsApp">
+  <span class="wa-lbl">Escríbenos ahora</span>
+  <div class="wa-bub">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="#ffffff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </div>
+</a>
+
+
+<!-- ══ MODAL ══ -->
+<div class="mov" id="mov" onclick="closeBg(event)">
+  <div class="modal">
+    <button class="mcl" onclick="closeMod()">✕</button>
+    <div id="mfc">
+      <h3>Reserva tu lugar</h3>
+      <p class="msub">El taller es cada <strong>lunes a las 8:00 PM</strong>. Déjanos tus datos y te enviamos el enlace de Zoom.</p>
+      <div class="ff"><label>Tu nombre</label><input type="text" id="mn" placeholder="Ej. Luis Ramírez"></div>
+      <div class="ff"><label>Correo electrónico</label><input type="email" id="me" placeholder="luis@ejemplo.com"></div>
+      <div class="ff"><label>WhatsApp</label><input type="tel" id="mp" placeholder="+52 222 000 0000"></div>
+      <button class="btn btn-violet" style="width:100%;justify-content:center;margin-top:6px;" onclick="handleTaller()">
+        🎥 Confirmar mi lugar en el taller
+      </button>
+      <p class="pnote">🔒 Solo usamos tus datos para enviarte el enlace del taller.</p>
+    </div>
+    <div class="sbox" id="msb">
+      <div class="sicon">🎉</div>
+      <h4>¡Estás dentro!</h4>
+      <p>Recibirás el enlace de Zoom antes del lunes.<br>También te enviamos la guía gratuita de regalo.<br><br>
+      <strong style="color:var(--plum);">Nos vemos el lunes a las 8:00 PM 🙌</strong></p>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  // Reveal
+  const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), {threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Post image preview
+  function previewPost(e){
+    const f = e.target.files[0]; if(!f) return;
+    const r = new FileReader();
+    r.onload = ev => {
+      const img = document.getElementById('post-preview');
+      img.src = ev.target.result; img.style.display = 'block';
+      document.getElementById('post-ph').style.display = 'none';
+    };
+    r.readAsDataURL(f);
+  }
+
+  // Modal
+  function openMod(){ document.getElementById('mov').classList.add('active'); document.getElementById('mfc').style.display='block'; document.getElementById('msb').style.display='none'; }
+  function closeMod(){ document.getElementById('mov').classList.remove('active'); }
+  function closeBg(e){ if(e.target===document.getElementById('mov')) closeMod(); }
+
+  function handleTaller(){
+    const n = document.getElementById('mn').value.trim();
+    const em = document.getElementById('me').value.trim();
+    if(!n||!em){ alert('Por favor completa tu nombre y correo.'); return; }
+    document.getElementById('mfc').style.display='none';
+    document.getElementById('msb').style.display='block';
+  }
+
+  function handleEbook(){
+    const n = document.getElementById('ln').value.trim();
+    const em = document.getElementById('le').value.trim();
+    if(!n||!em){ alert('Por favor ingresa tu nombre y correo.'); return; }
+    document.querySelector('.lbox').innerHTML = `
+      <div style="text-align:center;padding:24px 0;">
+        <div style="font-size:3.2rem;margin-bottom:14px;">📬</div>
+        <h3 style="font-family:'Playfair Display',serif;color:var(--plum);font-size:1.5rem;margin-bottom:10px;">¡Listo, ${n.split(' ')[0]}!</h3>
+        <p style="color:var(--tmid);line-height:1.7;font-size:.95rem;">
+          Tu guía está en camino a <strong style="color:var(--plum);">${em}</strong>.<br>
+          Revisa también la carpeta de spam si no llega en unos minutos.
+        </p>
+      </div>`;
+  }
+</script>
+</body>
+</html>
